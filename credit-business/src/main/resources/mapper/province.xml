@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.ProvinceDao" >
+    
+    <select id="findall" resultType="province" >
+       select id,provinceID,province from hat_province
+    </select>
+
+    <select id="findallbypname" resultType="province" parameterType="String">
+       select id,provinceID,province from hat_province where provinceid=#{provinceid}
+    </select>
+</mapper>

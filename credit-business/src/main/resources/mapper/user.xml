@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.UserDao" >
+    <!-- 添加用户基本资料 -->
+    <update id="insertusers" parameterType="Users">
+      update users 
+      set 
+      realname=#{realname},
+      IdCard=#{idcard},
+      bankCard=#{bankcard},
+      married=#{married},
+      education=#{education},
+      address=#{address},
+      income=#{income},
+      city=#{city},
+      limit=#{limit},
+      updatetime=sysdate where userid=#{userid}
+    </update>
+    
+    <select id="checkall" resultType="users" parameterType="Integer">
+     select userid,username,realname,mobile,married,education,city,address,income,idcard,bankcard,updatetime,limit from users where userid=#{userid}
+    </select>
+
+    <update id="updatelimit" parameterType="Users">
+       update users set limit=#{limit} where userid=#{userid}
+    </update>
+</mapper>

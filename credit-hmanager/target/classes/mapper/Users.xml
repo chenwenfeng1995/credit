@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.UserDao">
+
+	
+  <!-- 查询 -->
+    <select id="checkbylimit" parameterType="map" resultType="users">
+		select userid,username,realname,mobile,married,education,city,address,income,idcard,bankcard,updatetime 
+		from users 
+		<where>
+		 limit=#{limit}
+	    <if test="name!=null">
+	       and realname like '%${name}%'
+	    </if>
+	    <if test="mobile!=null">
+	        and  mobile like '%${mobile}%'
+	    </if>
+	    </where>
+	</select>
+	
+    <!-- 通过userid查询 -->
+	<select id="checkallbyuserid" parameterType="Integer" resultType="users">
+		select userid,username,realname,mobile,married,education,city,address,income,idcard,bankcard,updatetime from users where userid=#{userid}
+	</select>
+    
+    <!-- 通过useid修改limit -->
+    <update id="updatelimit" parameterType="map">
+         update users set limit=#{limit} where userid=#{userid}
+    </update>
+    
+    
+    <!-- 查询全部 -->
+    <select id="findall" resultType="users">
+    	select userid,username,realname,mobile,married,education,city,address,income,idcard,bankcard,updatetime,limit from users
+    </select>
+    
+    <!-- 三审通过userid修改limit -->
+    <update id="updatefinal" parameterType="Users">
+		update users  set limit=#{limit} where userid=#{userid}
+	</update>
+	
+	<select id="queryByidUsers" parameterType="java.lang.Integer" resultType="Users">
+	select userid,username,realname,mobile,married,education,city,address,income,idcard,bankcard,updatetime
+	from users where userid=#{userid} 
+		
+	
+	</select>
+</mapper>

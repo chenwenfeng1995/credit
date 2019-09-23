@@ -1,0 +1,33 @@
+#端口
+server:
+  port: 8081
+
+#单点登录
+cas:  server-url-prefix: http://localhost:8080/cas
+  server-login-url: http://localhost:8080/cas/login
+  client-host-url: http://localhost:8081
+  validation-type: CAS
+  
+#数据源
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1522:ORCL
+    username: scott
+    password: tiger
+#视图解析
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+#扫描映射文件
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.credit.pojo
+#分页插件
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  supportMethodsArguments: true
+

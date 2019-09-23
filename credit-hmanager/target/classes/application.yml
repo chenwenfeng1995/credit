@@ -1,0 +1,27 @@
+#端口
+server:
+  port: 8083
+  
+#数据源
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    username: xwj
+    password: abc
+#视图解析
+  mvc:
+    view:
+      prefix: /
+      suffix: .jsp
+#扫描映射文件
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.credit.pojo
+#分页插件
+pagehelper:
+  helper-dialect: oracle
+  params: count=countSql
+  reasonable: true
+  supportMethodsArguments: true
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.IFirstApplyDAO" >
+    	
+    
+    <!-- 多条件分页查询 -->
+    	<select id="findallApply" parameterType="map" resultType="FirstApply">
+			select s.sid, s.userid, s.pubFundFlag, s.mortgageFlag, s.policyFlag, s.clientname, s.sex, s.age, s.mobile,u.limit from survey s,users u 
+			<where>
+			s.userid=u.userid 
+			and u.limit='一审中'
+				<if test="clientName!=null and clientName!=''" >
+			        and s.clientname like '%${clientName}%'
+			    </if>
+				<if test="mobile!=null and mobile!=''">
+				 	 and s.mobile=#{mobile}  
+				 </if>
+			</where>
+			
+	</select>
+	
+	<!-- 通过userid查询survey表 -->
+	<select id="checkallbyuserid" parameterType="Integer" resultType="FirstApply">
+	    select sid, userid, pubfundflag, mortgageflag, policyflag, clientname, sex, age, mobile, workplace, createtime, updatetime 
+	    from survey where userid=#{userid}
+	</select>
+</mapper>

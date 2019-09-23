@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.CityDao" >
+    
+    <select id="findallbyfather" resultType="city" parameterType="String">
+       select id,cityID,city from hat_city WHERE father=#{father}
+    </select>
+
+    <select id="findallbycname" resultType="city" parameterType="String">
+       select id,cityID,city from hat_city where cityid=#{cityid}
+    </select>
+    
+</mapper>

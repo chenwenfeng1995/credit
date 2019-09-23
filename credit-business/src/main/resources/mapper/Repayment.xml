@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.credit.dao.RepaymentDao" >
+    
+<select id="getRepaymentByRid" resultType="com.credit.pojo.Repayment" >
+		select repayment.rid, repayment.userid, repayment.cid, repayment.eachisue, repayment.periods, repayment.alreadper, repayment.statu ,credit.paymentTime from repayment , credit where repayment.cid=credit.cid and  repayment.rid=#{rid}
+    </select> 
+    
+     <select id="getRepaymentByUserid" resultType="com.credit.pojo.Repayment" >
+		select repayment.rid, repayment.userid, repayment.cid, repayment.eachisue, repayment.periods, repayment.alreadper, repayment.statu ,credit.paymentTime from repayment , credit where repayment.cid=credit.cid and repayment.userid=#{userid}
+    </select> 
+   
+   <select id="getPeriodsNo" parameterType="com.credit.pojo.Bankreduce" resultType="com.credit.pojo.Bankreduce">
+   		select bid, userid, rid, bankisue, periodsno,bankcard ,reduceTime, statu from bankreduce where rid=#{rid} and userid=#{userid} and periodsno=#{periodsNo}
+   </select> 
+    
+</mapper>
